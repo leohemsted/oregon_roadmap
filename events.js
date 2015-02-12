@@ -1,4 +1,4 @@
-'use strict';CHOICE_EVENTS
+'use strict';
 var NO_CHOICE_EVENTS = [
     {
         title: 'Bonus Day!',
@@ -52,7 +52,7 @@ var NO_CHOICE_EVENTS = [
             'wrong. Your team emerges unscathed but they don\'t look to pleased about the entire affair.',
         options: [{
             text: 'ok',
-            morale: -3
+            morale: -4
         }]
     },
     {
@@ -62,7 +62,8 @@ var NO_CHOICE_EVENTS = [
         'strategic war games. An ultimatum is promptly delivered to your boss.',
         options: [{
             text: 'ok',
-            resource: -1
+            resource: -1,
+            morale: -1
         }]
     },
     {
@@ -72,7 +73,7 @@ var NO_CHOICE_EVENTS = [
         music: 'sad.mp3',
         options: [{
             text: 'ok',
-            morale: -5
+            morale: -6
         }]
     },
     {
@@ -82,7 +83,7 @@ var NO_CHOICE_EVENTS = [
         'toilets in Landmark House. Morale decreases.',
         options: [{
             text: 'ok',
-            morale: -5
+            morale: -4
         }]
     },
     {
@@ -123,7 +124,7 @@ var NO_CHOICE_EVENTS = [
         'ideas for how to further your own tasks.',
         options: [{
             text: 'ok',
-            morale: 3,
+            morale: 2,
             story_points: 2
         }]
     },
@@ -143,7 +144,7 @@ var NO_CHOICE_EVENTS = [
         'involve websockets! Oh god! You exhaust stackoverflow but the issue consumes most of your sprint anyway.',
         options: [{
             text: 'ok',
-            morale: -5,
+            morale: -8,
             story_points: -5
         }]
     },
@@ -183,7 +184,7 @@ var NO_CHOICE_EVENTS = [
         'and all of your code is hosted on the cloud. You twiddle your thumbs for a few hours.',
         options: [{
             text: 'ok',
-            story_points: -5
+            story_points: -6
         }]
     },
     {
@@ -193,7 +194,7 @@ var NO_CHOICE_EVENTS = [
         'just wants to go home and cry.',
         options: [{
             text: 'ok',
-            morale: -5
+            morale: -7
         }]
     },
 
