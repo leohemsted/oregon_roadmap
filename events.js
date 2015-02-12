@@ -69,6 +69,7 @@ var NO_CHOICE_EVENTS = [
         title: 'Technical Debt overload!',
         description: 'Your technical debt is running away from you, and the spaghetti code and poor OO practices in your ' +
         'codebase are making your developers weep. Someone hands your team a box of tissues, it doesn\'t seem to help much.',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             morale: -5
@@ -160,6 +161,7 @@ var NO_CHOICE_EVENTS = [
         description: 'You have reached the zenith of testing - after every commit a comprehensive suite of '+
         'automated tests are fired off and pass within seconds - you\'ll surely be able to get some more ' +
         'work done with these in place!',
+        music: 'yay.mp3',
         options: [{
             text: 'ok',
             story_points: 5
