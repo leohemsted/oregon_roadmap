@@ -1,6 +1,8 @@
 var Resource = React.createClass({
     render: function() {
-        return 'TODO';
+        return (
+            TODO
+        );
     },
     getInitialState: function() {
         return {
@@ -8,22 +10,28 @@ var Resource = React.createClass({
             job: '',
             velocity: Math.random() * (RESOURCE_MAX_VELOCITY - RESOURCE_MIN_VELOCITY) + RESOURCE_MIN_VELOCITY
         }
-    },
-    setName: function(name) {
-        this.name = name;
-    },
-    setJob: function(job) {
-        this.job = job;
     }
 });
 var Team = React.createClass({
-    
+    render: function() {
+        return null;
+    },
+    getInitialState: function() {
+        return {
+            resources: [],
+            morale: Math.random() * (MORALE_MAX - MORALE_MIN) + MORALE_MIN,
+            story_points: 0,
+            stories_completed: 0
+        }
+    }
 });
 
 var Game = React.createClass({
     render: function() {
-        return 'Welcome to the game';
+        return (
+            <b>Welcome to the game! (version {this.props.version})</b>
+        );
     }
-})
+});
 
-React.render()
+React.renderComponent(<Game version={VERSION} />, document.getElementById('container'));
