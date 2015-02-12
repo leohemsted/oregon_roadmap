@@ -16,11 +16,17 @@ var team = {
             this.story_points += randomNoise(item.story_points, 5);
         }
         if (item.resources !== undefined) {
-            var keys = Object.keys(this.resources);
-            var dead_employee = keys[Math.floor(keys.length * Math.random())];
-            delete this.resources[dead_employee];
-            return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
-
+            if (item.resources > 0) {
+                // chose a silly name
+                var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool']);
+                this.resources[name] = randomNoise(10, 4);
+                return 'Please welcome ' + name + 'to the team!';
+            } else if (items.resources < 0) {
+                var keys = Object.keys(this.resources);
+                var dead_employee = keys[Math.floor(keys.length * Math.random())];
+                delete this.resources[dead_employee];
+                return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
+            } // else i probably fucked up and wrote resources : 0 oh well
         }
     }
 };
@@ -55,9 +61,12 @@ var tick = function() {
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
-                team.updateVals(option);
+                var txt = team.updateVals(option);
                 teamStatus();
                 clean_up_dom();
+                if (txt) {
+                    $("#description").text(txt);
+                }
             })
         );
     });
