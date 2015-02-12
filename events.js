@@ -57,7 +57,7 @@ var NO_CHOICE_EVENTS = [
     },
     {
         title: 'Surprise inspection!',
-        description: 'Your client arrives at your office to ensure that everything is running smoothly and progressing ' +
+        description: 'Your client arrives at your office to ensure that everything is running smoothly, progressing ' +
         'ahead of speed and under budget. Their CEO gets hit square in the nose by a Nerf dart from one of your workers\' ' +
         'strategic war games. An ultimatum is promptly delivered to your boss.',
         options: [{
@@ -232,7 +232,7 @@ var NO_CHOICE_EVENTS = [
         'Your devs are happy to sit around and chat over lunch, and you get a new meeting room for all your standups!',
         options: [{
             text: 'ok',
-            morale: 5
+            morale: 2
         }]
     },
     {
@@ -242,7 +242,7 @@ var NO_CHOICE_EVENTS = [
         'for your team!". You\'re apprehensive but actually the guy\'s pretty smart.',
         options: [{
             text: 'ok',
-            morale: 2,
+            morale: -3,
             resources: 1
         }]
    },
