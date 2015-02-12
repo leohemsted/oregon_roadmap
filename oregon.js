@@ -41,6 +41,10 @@ var team = {
 
     isACompleteAndAbjectFailure: function() {
         return Object.keys(this.resources).length === 0 || this.morale <= 0 || this.story_points <= -100;
+    },
+
+    IsAGroupOfShiningGoldenGods: function() {
+        return this.story_points >= 500;
     }
 };
 
@@ -66,6 +70,9 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    if (team.IsAGroupOfShiningGoldenGods()){
+        return success();
+    }
     if (team.isACompleteAndAbjectFailure()){
         return fail();
     }
@@ -82,7 +89,7 @@ var tick = function() {
     $('#description').text(wild_encounter.description);
     var music_src = "sound/title.mp3";
     if (wild_encounter.music) {
-        var music_src = "sound/" + wild_encounter.music;
+        music_src = "sound/" + wild_encounter.music;
         if ($('#music source').attr("src") !== music_src) {
             $('#music source').attr("src", music_src);
             $('#music').trigger('pause');
@@ -127,6 +134,19 @@ var fail = function() {
     var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
         'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
         'northwest America.';
+    $('#description').text(txt);
+};
+
+var success = function() {
+    clean_up_dom();
+    $('#title').text('YOUR WINNER!').show();
+    $('#controls').hide();
+    $('#music source').attr("src", 'sound/yay.mp3');
+    $('#music').trigger('pause');
+    $('#music').trigger('load');
+    $('#music').trigger('play');
+    var txt = 'Your project succeeded in only ' + TICKS + ' sprints! You have entered the pantheon of the greats, ' +
+        'ready to go down in history as the greatest scrum team the world has ever known. Congratulations!';
     $('#description').text(txt);
 };
 
