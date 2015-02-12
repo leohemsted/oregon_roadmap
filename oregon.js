@@ -25,7 +25,7 @@ var team = {
                 // chose a silly name
                 var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool']);
                 this.resources[name] = randomNoise(10, 4);
-                return 'Please welcome ' + name + 'to the team!';
+                return 'Please welcome ' + name + ' to the team!';
             } else if (item.resources < 0) {
                 var keys = Object.keys(this.resources);
                 var dead_employee = keys[Math.floor(keys.length * Math.random())];
