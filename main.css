@@ -8,20 +8,22 @@ h1 {
     margin-bottom: 0px;
 }
 div.line {
-    border-top: solid 4px saddlebrown;
+    border-bottom: solid 4px saddlebrown;
     width: 95%;
-    margin-top: 15px;
+    margin: 15px;
 }
 #container {
     background-color: #000;
     color: #fff;
     width: 800px;
+    min-height: 600px;
     font-size: 18px;
+    padding: 20px;
 }
 #inner {
     margin: 0px 50px 0px 50px;
+    min-height: 450px;
 }
-#tick
 #gantt {
     position: relative;
 }
@@ -37,4 +39,11 @@ div.line {
 #controls {
     text-align: center;
     font: normal 32px 'VT323', courier, monospace;
+}
+#choices {
+    margin-left: 30px;
+}
+#choices li {
+    font-weight: bold;
+    text-transform: capitalize;
 }

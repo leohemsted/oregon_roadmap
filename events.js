@@ -57,7 +57,7 @@ var NO_CHOICE_EVENTS = [
     },
     {
         title: 'Surprise inspection!',
-        description: 'Your client arrives at your office to ensure that everything is running smoothly and progressing ' +
+        description: 'Your client arrives at your office to ensure that everything is running smoothly, progressing ' +
         'ahead of speed and under budget. Their CEO gets hit square in the nose by a Nerf dart from one of your workers\' ' +
         'strategic war games. An ultimatum is promptly delivered to your boss.',
         options: [{
@@ -69,6 +69,7 @@ var NO_CHOICE_EVENTS = [
         title: 'Technical Debt overload!',
         description: 'Your technical debt is running away from you, and the spaghetti code and poor OO practices in your ' +
         'codebase are making your developers weep. Someone hands your team a box of tissues, it doesn\'t seem to help much.',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             morale: -5
@@ -160,6 +161,7 @@ var NO_CHOICE_EVENTS = [
         description: 'You have reached the zenith of testing - after every commit a comprehensive suite of '+
         'automated tests are fired off and pass within seconds - you\'ll surely be able to get some more ' +
         'work done with these in place!',
+        music: 'yay.mp3',
         options: [{
             text: 'ok',
             story_points: 5
@@ -232,7 +234,7 @@ var NO_CHOICE_EVENTS = [
         'Your devs are happy to sit around and chat over lunch, and you get a new meeting room for all your standups!',
         options: [{
             text: 'ok',
-            morale: 5
+            morale: 2
         }]
     },
     {
@@ -242,7 +244,7 @@ var NO_CHOICE_EVENTS = [
         'for your team!". You\'re apprehensive but actually the guy\'s pretty smart.',
         options: [{
             text: 'ok',
-            morale: 2,
+            morale: -3,
             resources: 1
         }]
    },
