@@ -11,10 +11,14 @@ var team = {
 
     updateVals: function(item) {
         if (item.morale !== undefined) {
-            this.morale += randomNoise(item.morale, 10);
+            var val = randomNoise(item.morale, 10);
+            console.log('morale: ' + val);
+            this.morale += val;
         }
         if (item.story_points !== undefined) {
-            this.story_points += randomNoise(item.story_points, 5);
+            var val = randomNoise(item.story_points, 6);
+            console.log('story points: ' + val);
+            this.story_points += val;
         }
         if (item.resources !== undefined) {
             if (item.resources > 0) {
@@ -22,10 +26,11 @@ var team = {
                 var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool']);
                 this.resources[name] = randomNoise(10, 4);
                 return 'Please welcome ' + name + 'to the team!';
-            } else if (items.resources < 0) {
+            } else if (item.resources < 0) {
                 var keys = Object.keys(this.resources);
                 var dead_employee = keys[Math.floor(keys.length * Math.random())];
                 delete this.resources[dead_employee];
+                console.log(this.resources)
                 return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
             } // else i probably fucked up and wrote resources : 0 oh well
         }
@@ -47,6 +52,7 @@ var random = function(arr) {
 var teamStatus = function() {
     $('#morale').text(Math.floor(team.morale));
     $('#story_points').text(Math.floor(team.story_points));
+    $('#resources').empty();
     for (var name in team.resources) {
         $('#resources').append($('<li>').text(name));
     }
@@ -61,7 +67,7 @@ var tick = function() {
     $('#tick').attr("disabled", true);
 
     var wild_encounter = random(EVENTS);
-    $('#title').text(wild_encounter.title);
+    $('#event_name').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
@@ -79,7 +85,7 @@ var tick = function() {
 
 var clean_up_dom = function() {
     $('#tick').removeAttr('disabled');
-    $('#title').empty();
+    $('#event_name').empty();
     $('#description').empty();
     $('#choices').empty();
 };

@@ -220,13 +220,25 @@ var NO_CHOICE_EVENTS = [
         }]
     },
     {
-        title: '',
-        description: '',
+        title: 'Time to relax',
+        description: 'Your company shrunk some desks and managed to find some room for a breakout area! ' +
+        'Your devs are happy to sit around and chat over lunch, and you get a new meeting room for all your standups!',
         options: [{
             text: 'ok',
             morale: 5
         }]
     },
+    {
+        title: 'Nepotism',
+        description: 'Your boss pulls you aside after stand-up one day. "It\'s my son, he\'s looking for a job '+
+        'and I know you\'ve been pleading for more resources for a while now. I\'m sure he\'ll be a perfect fit '+
+        'for your team!". You\'re apprehensive but actually the guy\'s pretty smart.',
+        options: [{
+            text: 'ok',
+            morale: 2,
+            resources: 1
+        }]
+   },
 ];
 
 var CHOICE_EVENTS = [
