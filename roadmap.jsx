@@ -1,6 +1,6 @@
 'use strict';
 var GANTT_LEFT = 332;
-var GANTT_WIDTH = 64;
+var GANTT_WIDTH = 128;
 
 var ProgressBar = React.createClass({
     render: function() {
@@ -14,4 +14,4 @@ var ProgressBar = React.createClass({
 });
 
 
-React.renderComponent(<ProgressBar sprint={count} />, document.getElementById('progress'));
+React.renderComponent(<ProgressBar sprint={1} />, document.getElementById('progress'));

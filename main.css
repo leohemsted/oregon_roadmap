@@ -7,7 +7,7 @@ div #gantt {
 div #progress_bar {
     position: absolute;
     top: 19px;
-    width: 64px;
+    width: 128px;
     height: 507px;
     background-color: orange;
     display: block;
