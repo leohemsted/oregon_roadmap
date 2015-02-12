@@ -1,0 +1,95 @@
+Hiring:
+
+10 attempts to hire resources (devs, testers, project managers, devops)
+50% chance of success
+Player gets to pick names
+On failure (Bad interview, turned out to be a serial killer, etc)
+Start with however many you manage to hire
+Each resource has some stat that contributes to how many story points you can spend a sprint
+If you don't have at least one of each type of team member, you get half the story points per sprint
+Start with random morale
+
+Random Events:
+
+Bonus Day! (Morale increases)
+Resaource is hit by bus
+Resource dies of dysentry
+Resource is murdered by Gokhan/Nick
+Innovation Day! (Gain morale)
+Blamestorming session (Lose morale)
+Important customer visit on the day of your epic Nerf gun tournament (resource fired)
+Technical Debt overload! (Lose morale)
+Tissue paper in the urinals?! (Lose morale)
+Product is released (Gain morale)
+Positive customer feedback (Gain story points and morale)
+Negative customer feedback (Gain story points, Lose morale)
+New product idea (Gain story point and morale)
+Karaoke! (Gain morale)
+A horrifying multithreading issue appears (Lose story points and morale)
+A blocker appears (Lose story points)
+You achieved full automated test coverage (Gain story points)
+Hipchat goes down (Lose morale)
+Network failure (Lose story points)
+Meeting overruns by 3 hours (Lose morale)
+Team member is ill (Lose story points)
+Team member goes on holiday (Lose story points, Gain morale)
+Your company makes a huge sale (Gain morale)
+You create a break out area (Gain morale)
+
+Random choice events:
+
+What are we here to do?:
+1. Fuck spiders (Lose story points)
+2. Something else (Gain story points)
+Retrospective time! Actions:
+1. You start estimating in hours! (Lose story points)
+2. Get your ducks in a row (Gain story points)
+3. Drink the Kool-Aid (Lose morale)
+Backlog Grooming time! Actions:
+1. Estimate points (Gain story points)
+2. Coffee card! (Gain morale)
+3. Bio Break? (No effect)
+Time for a change up! Do you:
+1. Touch base to productise your efficiencies (No effect)
+2. Implement change management going forward (No effect)
+3. Paradigm shift by opening the kimono (No effect)
+Who touched base in my thought shower?:
+1. ??? (No effect)
+2. ?!?! (No effect)
+Company values go!:
+1. Ingenuity (Gain story points)
+2. Simplicity (No effect)
+3. Quality (Gain morale)
+Air con is busted! Do you:
+1. Send everyone home (Lose story points)
+2. Do nothing (Lose morale)
+All the meeting rooms are booked! Do you:
+1. Reorganise for next week (Lose story points)
+2. Have the meeting in the pub (No effect)
+The customer wants a new feature right now! Do you:
+1. Get it done ASAP (Lose morale)
+2. Push back (Lose story points)
+The team gets some extra budget! Do you:
+1. Try to hire a new resource? (50% chance to get a random resource)
+2. Outsource an old project (Gain story points)
+3. Buy a coffee machine (Gain morale)
+The team has their budget cut! Do you:
+1. Fire a resource
+2. Lower salary (Lose morale)
+
+Low Morale events:
+
+Resource leaves
+Low motivation (Lose story points)
+
+Sprint planning:
+
+Spend story points to do work (More resources = more story points per sprint)
+Work includes features, bugs and technical debt
+Technical debt doesn't get you points, but it increases morale
+
+
+Game ends after a certain number of sprints (6?)
+Random number of events per sprint
+Score is based on how much work you get done and the team morale
+If you get below a certain score, the company goes bankrupt
