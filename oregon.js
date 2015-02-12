@@ -1,6 +1,7 @@
 'use strict';
 /* global EVENTS, $*/
 var TICKS = 0;
+var MAX_TICKS = 25;
 
 var team = {
     resources: ['Alice', 'Barry', 'Chris', 'Dan', 'Englebert'],
@@ -33,7 +34,7 @@ var team = {
             if (item.resources > 0) {
                 // chose a silly name
                 var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool', 'Barry White']);
-                this.resources.append(name);
+                this.resources.push(name);
                 return 'Please welcome ' + name + ' to the team!';
             } else if (item.resources < 0) {
                 var bad_index = Math.floor(this.resources.length * Math.random());
@@ -152,7 +153,6 @@ var clean_up_dom = function() {
 };
 
 var play_music = function(filename) {
-    console.log(filename)
     var music_src = "sound/" + filename;
     if ($('#music source').attr("src") !== music_src) {
         $('#music source').attr("src", music_src);
@@ -187,7 +187,7 @@ var tick = function() {
     if (team.IsAGroupOfShiningGoldenGods()){
         return success();
     }
-    if (team.isACompleteAndAbjectFailure() || TICKS > 20){
+    if (team.isACompleteAndAbjectFailure() || TICKS >= MAX_TICKS){
         return fail();
     }
     TICKS++;
