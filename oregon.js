@@ -96,7 +96,7 @@ var tick = function() {
         }
     }
     var weather_descs = ['working','wheezing', 'working','broken']
-    $('#weather_status').html(weather_descs[Math.floor(Math.random() * (weather_descs.length - 1))]);
+    $('#weather_status').html(weather_descs[Math.round(Math.random() * (weather_descs.length))]);
 
     var story_points = Math.floor(team.story_points);
     var velocity_desc = '';
