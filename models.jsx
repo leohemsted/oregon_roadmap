@@ -1,7 +1,7 @@
 var Resource = React.createClass({
     render: function() {
         return (
-            <p>{this.props.name}: {this.props.job}</p>
+            <div>{this.props.name}: {this.props.job}</div>
         );
     },
     getInitialState: function() {
@@ -82,7 +82,7 @@ var Game = React.createClass({
             );
         } else {
             return (
-                <div><Team ref="team" element="team" name={this.state.aex}  /></div>
+                <div><Team ref="team" name={this.state.aex}  /></div>
             );
         }
     },
@@ -94,4 +94,4 @@ var Game = React.createClass({
     }
 });
 
-GLOBAL_GAME = React.renderComponent(<Game version={VERSION} />, document.getElementById('container'));
+GLOBAL_GAME = React.render(<Game version={VERSION} />, document.getElementById('container'));
