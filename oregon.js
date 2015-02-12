@@ -1,5 +1,6 @@
 'use strict';
 /* global EVENTS, $*/
+var TICKS = 0;
 
 var team = {
     //name: velocity
@@ -16,11 +17,17 @@ var team = {
             this.story_points += randomNoise(item.story_points, 5);
         }
         if (item.resources !== undefined) {
-            var keys = Object.keys(this.resources);
-            var dead_employee = keys[Math.floor(keys.length * Math.random())];
-            delete this.resources[dead_employee];
-            return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
-
+            if (item.resources > 0) {
+                // chose a silly name
+                var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool']);
+                this.resources[name] = randomNoise(10, 4);
+                return 'Please welcome ' + name + 'to the team!';
+            } else if (items.resources < 0) {
+                var keys = Object.keys(this.resources);
+                var dead_employee = keys[Math.floor(keys.length * Math.random())];
+                delete this.resources[dead_employee];
+                return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
+            } // else i probably fucked up and wrote resources : 0 oh well
         }
     }
 };
@@ -46,8 +53,13 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    TICKS++;
+    if (TICKS > 0) {
+        $('#title').hide();
+    }
     // disable the next sprint button
-    $('#tick').attr("disabled", true);
+    //$('#tick').attr("disabled", true);
+    $('#controls').hide();
 
     var wild_encounter = random(EVENTS);
     $('#title').text(wild_encounter.title);
@@ -65,17 +77,38 @@ var tick = function() {
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
-                team.updateVals(option);
+                var txt = team.updateVals(option);
                 teamStatus();
                 clean_up_dom();
+                if (txt) {
+                    $("#description").text(txt);
+                }
             })
         );
     });
 };
 
 var clean_up_dom = function() {
-    $('#tick').removeAttr('disabled');
+    //$('#tick').removeAttr('disabled');
+    $('#controls').show();
     $('#title').empty();
     $('#description').empty();
     $('#choices').empty();
 };
+
+window.addEventListener("keypress", checkKeys, false);
+
+function checkKeys(e) {
+    if (e.charCode == "32" || e.charCode == "13") {
+        if ($('#controls').is(':visible')) {
+            tick();
+        }
+    }
+}
+
+// This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
+window.onload = function() {
+    if (TICKS == 0) {
+        $('#tick').attr("disabled", false);
+    }
+}

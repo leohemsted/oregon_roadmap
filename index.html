@@ -11,25 +11,32 @@
     </head>
     <body>
     <div id="container">
-        <h1>The Oregon Roadmap</h1>
-        <button id="tick" onclick="tick()">Next sprint</button>
+        <h1 id="title">The Oregon Roadmap</h1>
+        <div class="line"></div>
+        <div id="inner">
+            <!--button id="tick" onclick="tick()">Next sprint</button-->
 
-        <div id="event">
-            <h3 id="title"></h3>
-            <span id="description"></span>
-            <ul id="choices"></ul>
+            <div id="event">
+                <h3 id="title"></h3>
+                <span id="description"></span>
+                <ul id="choices"></ul>
+            </div>
+
+            <!--div id="gantt" style="position:relative;">
+                <img src="img/gantt.png" alt="gantt"></img>
+            </div>-->
+            <div id="team">
+                <div><h5>Team morale:</h5><span id="morale"></span></div>
+                <div><h5>Story point progress:</h5><span id="story_points"></span></div>
+                <h5>Resources:</h5>
+                <ol id="resources"></ol>
+            </div>
+
+            <div id="progress"></div>
+
         </div>
-
-        <!--div id="gantt" style="position:relative;">
-            <img src="img/gantt.png" alt="gantt"></img>
-        </div>-->
-        <div id="team">
-            <div><h5>Team morale:</h5><span id="morale"></span></div>
-            <div><h5>Story point progress:</h5><span id="story_points"></span></div>
-            <ol id="resources"></ol>
-        </div>
-
-        <div id="progress"></div>
+        <div class="line"></div>
+        <div id="controls" onclick="tick()">Press SPACE BAR to continue</div>
     </div>
     </body>
     <script>teamStatus();</script>
