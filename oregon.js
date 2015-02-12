@@ -9,6 +9,10 @@ var team = {
     story_points: 0,
     morale: 100,
 
+    addResourcePoints: function() {
+        this.story_points += Object.keys(this.resources).length;
+    },
+
     updateVals: function(item) {
         if (item.morale !== undefined) {
             var val = randomNoise(item.morale, 10);
@@ -70,7 +74,7 @@ var tick = function() {
     var wild_encounter = random(EVENTS);
     $('#event_name').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
-    var music_src = "sound/title.mp3"
+    var music_src = "sound/title.mp3";
     if (wild_encounter.music) {
         music_src = "sound/" + wild_encounter.music;
     }
@@ -84,6 +88,7 @@ var tick = function() {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
                 var txt = team.updateVals(option);
+                team.addResourcePoints();
                 teamStatus();
                 clean_up_dom();
                 if (txt) {
