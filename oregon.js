@@ -93,6 +93,65 @@ var tick = function() {
             $('#music').trigger('play');
         }
     }
+    var weather_descs = ['working','wheezing', 'working','broken']
+    $('#weather_status').html(weather_descs[Math.round(Math.random() * (weather_descs.length))]);
+
+    var story_points = Math.floor(team.story_points);
+    var velocity_desc = '';
+    if (story_points >= 10) {
+        velocity_desc = 'bonuses++';
+    }
+    else if (story_points >= 5) {
+        velocity_desc = 'industry leading';
+    }
+    else if (story_points >= 0) {
+        velocity_desc = 'average';
+    }
+    else if (story_points >= -5) {
+        velocity_desc = 'industry standard';
+    }
+    else if (story_points >= -10) {
+        velocity_desc = 'sub-par';
+    }
+    else if (story_points >= -15) {
+        velocity_desc = 'AWOL';
+    }
+    else {
+        velocity_desc = 'unknown';
+    }
+    $('#velocity_status').html(velocity_desc);
+
+    var morale = Math.floor(team.morale);
+    var morale_desc = '';
+    if (morale >= 115) {
+        morale_desc = 'out of this <s>world</s> office';
+    } else if (morale >= 110) {
+        morale_desc = 'bouyant';
+    } else if(morale >= 105) {
+        morale_desc = 'above par';
+    } else if (morale >= 100) {
+        morale_desc = 'average';
+    } else if (morale >= -5) {
+        morale_desc = 'industry standard';
+    } else if(morale >= -10) {
+        morale_desc = 'sub-par';
+    } else if(morale >= -15) {
+        morale_desc = 'AWOL';
+    } else {
+        morale_desc = 'unknown';
+    }
+    $('#morale_status').html(morale_desc);
+
+    var resource_level = Object.keys(team.resources).length;
+    if (resource_level == 4 && Math.random() > 0.7) {
+        $('#resource_status').html('4 DAYS TO USE BY DATE');
+    } else {
+        $('#resource_status').html(resource_level);
+    }
+
+
+    $('#team_status').show();
+    $('#team').hide();
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
@@ -117,6 +176,9 @@ var clean_up_dom = function() {
     $('#event_name').empty();
     $('#description').empty();
     $('#choices').empty();
+
+    $('#team_status').hide();
+    $('#team').show();
 };
 
 var fail = function() {

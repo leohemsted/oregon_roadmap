@@ -17,7 +17,7 @@ div.line {
     color: #fff;
     width: 800px;
     min-height: 600px;
-    font-size: 18px;
+    font-size: 17px;
     padding: 20px;
 }
 #inner {
@@ -26,6 +26,17 @@ div.line {
 }
 #gantt {
     position: relative;
+}
+#event_name {
+    text-align: center;
+}
+#team_status {
+    background-color: #fff;
+    color: #000;
+    font-weight: bolder;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 5px 20px 5px 20px;
 }
 #progress_bar {
     position: absolute;
