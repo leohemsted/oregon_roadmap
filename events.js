@@ -414,7 +414,7 @@ var CHOICE_EVENTS = [
             },
             {
                 text: 'Lower salary',
-                morale: -5
+                morale: -15
             }
         ]
     },

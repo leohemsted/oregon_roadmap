@@ -34,8 +34,9 @@ var team = {
             } // else i probably fucked up and wrote resources : 0 oh well
         }
     },
+
     isACompleteAndAbjectFailure: function() {
-        return this.resources.length === 0 || this.morale <= 0 || this.story_points <= -100;
+        return Object.keys(this.resources).length === 0 || this.morale <= 0 || this.story_points <= -100;
     }
 };
 
@@ -61,6 +62,9 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    if (team.isACompleteAndAbjectFailure()){
+        return fail();
+    }
     TICKS++;
     if (TICKS > 0) {
         $('#title').hide();
@@ -68,22 +72,19 @@ var tick = function() {
     // disable the next sprint button
     //$('#tick').attr("disabled", true);
     $('#controls').hide();
-    if (team.isACompleteAndAbjectFailure()){
-        return fail();
-    }
 
     var wild_encounter = random(EVENTS);
     $('#event_name').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
     var music_src = "sound/title.mp3";
     if (wild_encounter.music) {
-        music_src = "sound/" + wild_encounter.music;
-    }
-    if ($('#music source').attr("src") !== music_src) {
-        $('#music source').attr("src", music_src);
-        $('#music').trigger('pause');
-        $('#music').trigger('load');
-        $('#music').trigger('play');
+        var music_src = "sound/" + wild_encounter.music;
+        if ($('#music source').attr("src") !== music_src) {
+            $('#music source').attr("src", music_src);
+            $('#music').trigger('pause');
+            $('#music').trigger('load');
+            $('#music').trigger('play');
+        }
     }
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
@@ -112,13 +113,15 @@ var clean_up_dom = function() {
 
 var fail = function() {
     clean_up_dom();
-    $('#music source').attr("src", 'sad.mp3');
+    $('#title').text('GAME OVER').show();
+    $('#controls').hide();
+    $('#music source').attr("src", 'sound/sad.mp3');
     $('#music').trigger('pause');
     $('#music').trigger('load');
     $('#music').trigger('play');
     var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
         'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
-        'northwest america.';
+        'northwest America.';
     $('#description').text(txt);
 };
 
