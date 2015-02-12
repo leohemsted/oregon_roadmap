@@ -161,6 +161,7 @@ var NO_CHOICE_EVENTS = [
         description: 'You have reached the zenith of testing - after every commit a comprehensive suite of '+
         'automated tests are fired off and pass within seconds - you\'ll surely be able to get some more ' +
         'work done with these in place!',
+        music: 'yay.mp3',
         options: [{
             text: 'ok',
             story_points: 5
