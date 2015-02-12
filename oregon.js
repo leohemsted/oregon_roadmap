@@ -34,10 +34,13 @@ var team = {
                 var keys = Object.keys(this.resources);
                 var dead_employee = keys[Math.floor(keys.length * Math.random())];
                 delete this.resources[dead_employee];
-                console.log(this.resources)
                 return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
             } // else i probably fucked up and wrote resources : 0 oh well
         }
+    },
+
+    isACompleteAndAbjectFailure: function() {
+        return Object.keys(this.resources).length === 0 || this.morale <= 0 || this.story_points <= -100;
     }
 };
 
@@ -63,6 +66,9 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    if (team.isACompleteAndAbjectFailure()){
+        return fail();
+    }
     TICKS++;
     if (TICKS > 0) {
         $('#title').hide();
@@ -76,13 +82,13 @@ var tick = function() {
     $('#description').text(wild_encounter.description);
     var music_src = "sound/title.mp3";
     if (wild_encounter.music) {
-        music_src = "sound/" + wild_encounter.music;
-    }
-    if ($('#music source').attr("src") != music_src) {
-        $('#music source').attr("src", music_src);
-        $('#music').trigger('pause');
-        $('#music').trigger('load');
-        $('#music').trigger('play');
+        var music_src = "sound/" + wild_encounter.music;
+        if ($('#music source').attr("src") !== music_src) {
+            $('#music source').attr("src", music_src);
+            $('#music').trigger('pause');
+            $('#music').trigger('load');
+            $('#music').trigger('play');
+        }
     }
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
@@ -110,10 +116,24 @@ var clean_up_dom = function() {
     $('#choices').empty();
 };
 
+var fail = function() {
+    clean_up_dom();
+    $('#title').text('GAME OVER').show();
+    $('#controls').hide();
+    $('#music source').attr("src", 'sound/sad.mp3');
+    $('#music').trigger('pause');
+    $('#music').trigger('load');
+    $('#music').trigger('play');
+    var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
+        'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
+        'northwest America.';
+    $('#description').text(txt);
+};
+
 window.addEventListener("keypress", checkKeys, false);
 
 function checkKeys(e) {
-    if (e.charCode == "32" || e.charCode == "13") {
+    if (e.charCode === 32 || e.charCode === 13) {
         if ($('#controls').is(':visible')) {
             tick();
         }
@@ -122,7 +142,7 @@ function checkKeys(e) {
 
 // This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
 window.onload = function() {
-    if (TICKS == 0) {
+    if (TICKS === 0) {
         $('#tick').attr("disabled", false);
     }
-}
+};
