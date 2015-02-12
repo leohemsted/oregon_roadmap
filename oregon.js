@@ -215,6 +215,12 @@ function checkKeys(e) {
         if ($('#controls').is(':visible')) {
             tick();
         }
+    } else if (e.charCode >= 49 && e.charCode <= 51) {
+        var index = e.charCode - 49;
+        var choice = $('#choices').children('li')[index];
+        if (choice) {
+            choice.click();
+        }
     }
 }
 
