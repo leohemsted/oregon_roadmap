@@ -392,7 +392,7 @@ var CHOICE_EVENTS = [
         options: [
             {
                 text: 'Hire a new resource?',
-                resource: 1
+                resources: 1
             },
             {
                 text: 'Outsource an old project',
@@ -410,7 +410,7 @@ var CHOICE_EVENTS = [
         options: [
             {
                 text: 'Fire a resource',
-                resource: -1
+                resources: -1
             },
             {
                 text: 'Lower salary',
