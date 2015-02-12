@@ -14,7 +14,9 @@ var Resource = React.createClass({
 });
 var Team = React.createClass({
     render: function() {
-        return null;
+        return (
+            <h2>Leo please add details</h2>
+            );
     },
     getInitialState: function() {
         return {
@@ -32,8 +34,7 @@ var Team = React.createClass({
 
 var Game = React.createClass({
     createTeam: function() {
-        team = new Team();
-        console.log(team);
+        this.setState({aex: this.refs.team_name.props.value});
         this.advanceState();
     },
     advanceState: function() {
@@ -50,13 +51,13 @@ var Game = React.createClass({
         else if (this.state.status == CREATE_TEAM) {
             return (
                     <table>
-                        <tr><td>Team name</td><td><input name="team_name" value={TEAM_DEFAULT_NAME} /></td></tr>
+                        <tr><td>Team name</td><td><input ref="team_name" value={TEAM_DEFAULT_NAME} /></td></tr>
                         <tr><td colspan="2"><button onClick={this.createTeam}>Create</button></td></tr>
                     </table>
             );
         } else {
             return (
-                <h2>Leo please add details</h2>
+                <Team ref="team" name={this.state.aex}  />
             );
         }
     },
@@ -68,4 +69,4 @@ var Game = React.createClass({
     }
 });
 
-React.renderComponent(<Game version={VERSION} />, document.getElementById('container'));
+GLOBAL_GAME = React.renderComponent(<Game version={VERSION} />, document.getElementById('container'));
