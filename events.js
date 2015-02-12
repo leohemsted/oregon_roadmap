@@ -169,7 +169,7 @@ var NO_CHOICE_EVENTS = [
     },
     {
         title: 'Atlassian cockup',
-        description: 'Hipchat goes down! Now your developers have nothing to do inbetween meetings! '+
+        description: 'Hipchat goes down! Now your developers have nothing to do in between meetings! '+
         'They\'re moping around looking miserable at the moment.',
         music: 'sad.mp3',
         options: [{
@@ -252,6 +252,24 @@ var NO_CHOICE_EVENTS = [
 
 var CHOICE_EVENTS = [
     {
+        title: 'Retrospective time!',
+        description: 'What\'s on the agenda?',
+        options: [
+            {
+                text: 'You start estimating in hours!',
+                story_points: -5
+            },
+            {
+                text: 'Get your ducks in a row',
+                story_points: 3
+            },
+            {
+                text: 'Drink the Kool-Aid',
+                morale: -5
+            }
+        ]
+    },
+    {
         title: 'Decide your meeting agenda',
         description: 'What are we here to do?',
         options: [
@@ -262,6 +280,141 @@ var CHOICE_EVENTS = [
             {
                 text: 'Something else',
                 story_points: 3
+            }
+        ]
+    },
+    {
+        title: 'Backlog Grooming time!',
+        description: 'What\'s on the agenda?',
+        options: [
+            {
+                text: 'Estimate points',
+                story_points: 5
+            },
+            {
+                text: 'Coffee card!',
+                morale: 4
+            },
+            {
+                text: 'Bio Break?'
+            }
+        ]
+    },
+    {
+        title: 'Time for a change up!',
+        description: 'What do you feel like doing?',
+        options: [
+            {
+                text: 'Touch base to productise your efficiencies'
+            },
+            {
+                text: 'Implement change management going forward'
+            },
+            {
+                text: 'Paradigm shift by opening the kimono'
+            }
+        ]
+    },
+    {
+        title: 'Who touched base in my thought shower?',
+        description: 'What?',
+        options: [
+            {
+                text: '???'
+            },
+            {
+                text: '?!?!'
+            }
+        ]
+    },
+    {
+        title: 'Company values go!',
+        description: 'What award do you win?',
+        options: [
+            {
+                text: 'Ingenuity',
+                story_points: 2
+            },
+            {
+                text: 'Simplicity'
+            },
+            {
+                text: 'Quality',
+                morale: 3
+            }
+        ]
+    },
+    {
+        title: 'Air con is busted!',
+        description: 'Do you:',
+        options: [
+            {
+                text: 'Send everyone home?',
+                story_points: -3
+            },
+            {
+                text: 'Ask to get it fixed ASAP',
+                morale: -1
+            }
+        ]
+    },
+    {
+        title: 'All the meeting rooms are booked!',
+        description: 'Do you:',
+        options: [
+            {
+                text: 'Reorganise for next week',
+                story_points: -2
+            },
+            {
+                text: 'Have the meeting in the pub',
+                morale: 1
+            }
+        ]
+    },
+    {
+        title: 'The customer wants a new feature right now!',
+        description: 'Do you:',
+        options: [
+            {
+                text: 'Get it done ASAP',
+                morale: -2
+            },
+            {
+                text: 'Push back',
+                story_points: -4
+            }
+        ]
+    },
+    {
+        title: 'The team gets some extra budget!',
+        description: 'Do you:',
+        options: [
+            {
+                text: 'Hire a new resource?',
+                resources: 1
+            },
+            {
+                text: 'Outsource an old project',
+                story_points: 4
+            },
+            {
+                text: 'Buy a coffee machine',
+                morale: 2
+            }
+        ]
+    },
+    {
+        title: 'The team has their budget cut!',
+        description: 'Do you:',
+        options: [
+            {
+                text: 'Fire a resource',
+                resources: -1
+            },
+            {
+                text: 'Lower salary',
+                morale: -15
             }
         ]
     },

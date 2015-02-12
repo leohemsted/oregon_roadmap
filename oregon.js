@@ -3,11 +3,13 @@
 var TICKS = 0;
 
 var team = {
-    //name: velocity
     resources: {Alice: 10, Barry: 7, Chris: 12, Dan: 9, Englebert:9},
-    //velocity: 47
     story_points: 0,
     morale: 100,
+
+    addResourcePoints: function() {
+        this.story_points += Object.keys(this.resources).length;
+    },
 
     updateVals: function(item) {
         if (item.morale !== undefined) {
@@ -30,10 +32,17 @@ var team = {
                 var keys = Object.keys(this.resources);
                 var dead_employee = keys[Math.floor(keys.length * Math.random())];
                 delete this.resources[dead_employee];
-                console.log(this.resources)
                 return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
             } // else i probably fucked up and wrote resources : 0 oh well
         }
+    },
+
+    isACompleteAndAbjectFailure: function() {
+        return Object.keys(this.resources).length === 0 || this.morale <= 0 || this.story_points <= -50;
+    },
+
+    IsAGroupOfShiningGoldenGods: function() {
+        return this.story_points >= 100;
     }
 };
 
@@ -59,6 +68,12 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    if (team.IsAGroupOfShiningGoldenGods()){
+        return success();
+    }
+    if (team.isACompleteAndAbjectFailure() || TICKS > 20){
+        return fail();
+    }
     TICKS++;
     if (TICKS > 0) {
         $('#title').hide();
@@ -70,15 +85,15 @@ var tick = function() {
     var wild_encounter = random(EVENTS);
     $('#event_name').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
-    var music_src = "sound/title.mp3"
+    var music_src = "sound/title.mp3";
     if (wild_encounter.music) {
         music_src = "sound/" + wild_encounter.music;
-    }
-    if ($('#music source').attr("src") != music_src) {
-        $('#music source').attr("src", music_src);
-        $('#music').trigger('pause');
-        $('#music').trigger('load');
-        $('#music').trigger('play');
+        if ($('#music source').attr("src") !== music_src) {
+            $('#music source').attr("src", music_src);
+            $('#music').trigger('pause');
+            $('#music').trigger('load');
+            $('#music').trigger('play');
+        }
     }
     var weather_descs = ['working','wheezing', 'working','broken']
     $('#weather_status').html(weather_descs[Math.floor(Math.random() * (weather_descs.length - 1))]);
@@ -143,6 +158,7 @@ var tick = function() {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
                 var txt = team.updateVals(option);
+                team.addResourcePoints();
                 teamStatus();
                 clean_up_dom();
                 if (txt) {
@@ -167,10 +183,37 @@ var clean_up_dom = function() {
     $('#team').show();
 };
 
+var fail = function() {
+    clean_up_dom();
+    $('#title').text('GAME OVER').show();
+    $('#controls').hide();
+    $('#music source').attr("src", 'sound/sad.mp3');
+    $('#music').trigger('pause');
+    $('#music').trigger('load');
+    $('#music').trigger('play');
+    var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
+        'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
+        'northwest America.';
+    $('#description').text(txt);
+};
+
+var success = function() {
+    clean_up_dom();
+    $('#title').text('YOUR WINNER!').show();
+    $('#controls').hide();
+    $('#music source').attr("src", 'sound/yay.mp3');
+    $('#music').trigger('pause');
+    $('#music').trigger('load');
+    $('#music').trigger('play');
+    var txt = 'Your project succeeded in only ' + TICKS + ' sprints! You have entered the pantheon of the greats, ' +
+        'ready to go down in history as the greatest scrum team the world has ever known. Congratulations!';
+    $('#description').text(txt);
+};
+
 window.addEventListener("keypress", checkKeys, false);
 
 function checkKeys(e) {
-    if (e.charCode == "32" || e.charCode == "13") {
+    if (e.charCode === 32 || e.charCode === 13) {
         if ($('#controls').is(':visible')) {
             tick();
         }
@@ -179,7 +222,7 @@ function checkKeys(e) {
 
 // This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
 window.onload = function() {
-    if (TICKS == 0) {
+    if (TICKS === 0) {
         $('#tick').attr("disabled", false);
     }
-}
+};
