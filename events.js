@@ -1,4 +1,4 @@
-'use strict';
+'use strict';CHOICE_EVENTS
 var NO_CHOICE_EVENTS = [
     {
         title: 'Bonus Day!',
@@ -244,7 +244,9 @@ var CHOICE_EVENTS = [
             }
         ]
     },
-]
+];
+
+var EVENTS = CHOICE_EVENTS + NO_CHOICE_EVENTS;
 
 
 /*    Hiring:
