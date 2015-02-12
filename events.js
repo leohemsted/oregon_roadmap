@@ -167,7 +167,7 @@ var NO_CHOICE_EVENTS = [
     },
     {
         title: 'Atlassian cockup',
-        description: 'Hipchat goes down! Now your developers have nothing to do inbetween meetings! '+
+        description: 'Hipchat goes down! Now your developers have nothing to do in between meetings! '+
         'They\'re moping around looking miserable at the moment.',
         music: 'sad.mp3',
         options: [{

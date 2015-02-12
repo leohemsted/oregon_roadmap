@@ -30,10 +30,12 @@ var team = {
                 var keys = Object.keys(this.resources);
                 var dead_employee = keys[Math.floor(keys.length * Math.random())];
                 delete this.resources[dead_employee];
-                console.log(this.resources)
                 return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
             } // else i probably fucked up and wrote resources : 0 oh well
         }
+    },
+    isACompleteAndAbjectFailure: function() {
+        return this.resources.length === 0 || this.morale <= 0 || this.story_points <= -100;
     }
 };
 
@@ -66,15 +68,18 @@ var tick = function() {
     // disable the next sprint button
     //$('#tick').attr("disabled", true);
     $('#controls').hide();
+    if (team.isACompleteAndAbjectFailure()){
+        return fail();
+    }
 
     var wild_encounter = random(EVENTS);
     $('#event_name').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
-    var music_src = "sound/title.mp3"
+    var music_src = "sound/title.mp3";
     if (wild_encounter.music) {
         music_src = "sound/" + wild_encounter.music;
     }
-    if ($('#music source').attr("src") != music_src) {
+    if ($('#music source').attr("src") !== music_src) {
         $('#music source').attr("src", music_src);
         $('#music').trigger('pause');
         $('#music').trigger('load');
@@ -105,10 +110,22 @@ var clean_up_dom = function() {
     $('#choices').empty();
 };
 
+var fail = function() {
+    clean_up_dom();
+    $('#music source').attr("src", 'sad.mp3');
+    $('#music').trigger('pause');
+    $('#music').trigger('load');
+    $('#music').trigger('play');
+    var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
+        'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
+        'northwest america.';
+    $('#description').text(txt);
+};
+
 window.addEventListener("keypress", checkKeys, false);
 
 function checkKeys(e) {
-    if (e.charCode == "32" || e.charCode == "13") {
+    if (e.charCode === 32 || e.charCode === 13) {
         if ($('#controls').is(':visible')) {
             tick();
         }
@@ -117,7 +134,7 @@ function checkKeys(e) {
 
 // This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
 window.onload = function() {
-    if (TICKS == 0) {
+    if (TICKS === 0) {
         $('#tick').attr("disabled", false);
     }
-}
+};
