@@ -3,9 +3,7 @@
 var TICKS = 0;
 
 var team = {
-    //name: velocity
     resources: {Alice: 10, Barry: 7, Chris: 12, Dan: 9, Englebert:9},
-    //velocity: 47
     story_points: 0,
     morale: 100,
 
@@ -40,11 +38,11 @@ var team = {
     },
 
     isACompleteAndAbjectFailure: function() {
-        return Object.keys(this.resources).length === 0 || this.morale <= 0 || this.story_points <= -100;
+        return Object.keys(this.resources).length === 0 || this.morale <= 0 || this.story_points <= -50;
     },
 
     IsAGroupOfShiningGoldenGods: function() {
-        return this.story_points >= 500;
+        return this.story_points >= 100;
     }
 };
 
@@ -73,7 +71,7 @@ var tick = function() {
     if (team.IsAGroupOfShiningGoldenGods()){
         return success();
     }
-    if (team.isACompleteAndAbjectFailure()){
+    if (team.isACompleteAndAbjectFailure() || TICKS > 20){
         return fail();
     }
     TICKS++;
