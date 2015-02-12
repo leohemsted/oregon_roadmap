@@ -2,6 +2,7 @@
 /* global EVENTS, $*/
 
 var team = {
+    //name: velocity
     resources: {Alice: 10, Barry: 7, Chris: 12, Dan: 9, Englebert:9},
     //velocity: 47
     story_points: 0,
@@ -15,9 +16,11 @@ var team = {
             this.story_points += randomNoise(item.story_points, 5);
         }
         if (item.resources !== undefined) {
-            var desiredIndex = Math.floor(Math.random() * this.resources.length);
-            this.resources.splice(desiredIndex, 1);
-            return '';
+            var keys = Object.keys(this.resources);
+            var dead_employee = keys[Math.floor(keys.length * Math.random())];
+            delete this.resources[dead_employee];
+            return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
+
         }
     }
 };
@@ -45,15 +48,15 @@ var tick = function() {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
                 team.updateVals(option);
-                resolve_event();
+                clean_up_dom();
             })
         );
     });
 };
 
-var resolve_event = function() {
+var clean_up_dom = function() {
     $('#tick').removeAttr('disabled');
     $('#title').empty();
-    $('description').empty();
-    $('choices').empty();
+    $('#description').empty();
+    $('#choices').empty();
 };
