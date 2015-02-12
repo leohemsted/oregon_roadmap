@@ -3,15 +3,21 @@
     <head>
         <meta charset='utf-8'>
         <title>Oregon Roadmap</title>
-        <script type="text/javascript" src="lib/react.js"></script>
-        <script type="text/javascript" src="lib/JSXTransformer.js"></script>
-        <script type="text/jsx" src="main.jsx"></script>
-        <script type="text/jsx" src="roadmap.jsx"></script>
+        <script type="text/javascript" src="lib/jquery-2.1.3.js"></script>
+        <script type="text/javascript" src="events.js"></script>
+        <script type="text/javascript" src="oregon.js"></script>
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
         <h1>OREGON ROADMAP</h1>
-        <div id="message"></div>
+        <button id="tick" onclick="tick()">Next sprint</button>
+
+        <div id="event">
+            <h3 id="title"></h3>
+            <span id="description"></span>
+            <ul id="choices"></ul>
+        </div>
+
         <div id="gantt" style="position:relative;">
             <img src="img/gantt.png" alt="gantt"></img>
             <div id="progress"></div>
