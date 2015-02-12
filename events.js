@@ -120,7 +120,7 @@ var NO_CHOICE_EVENTS = [
     {
         title: 'Dev roadmap',
         description: 'The product team present an idea for an awesome new product, the devs love it and you gain some cool '+
-        'ideas for how to further your own task.',
+        'ideas for how to further your own tasks.',
         options: [{
             text: 'ok',
             morale: 3,
@@ -251,6 +251,20 @@ var NO_CHOICE_EVENTS = [
 ];
 
 var CHOICE_EVENTS = [
+    {
+        title: 'PC Load Letter? What does that mean?',
+        description: 'Your printer has failed you one too many times.',
+        options: [
+            {
+                text: 'Call IT'
+            },
+            {
+                text: 'Take it out back with a baseball bat',
+                story_points: -5,
+                morale: 5
+            }
+        ]
+    },
     {
         title: 'Retrospective time!',
         description: 'What\'s on the agenda?',
@@ -389,6 +403,7 @@ var CHOICE_EVENTS = [
     {
         title: 'The team gets some extra budget!',
         description: 'Do you:',
+        music: 'yay.mp3',
         options: [
             {
                 text: 'Hire a new resource?',
@@ -396,7 +411,7 @@ var CHOICE_EVENTS = [
             },
             {
                 text: 'Outsource an old project',
-                story_points: 4
+                story_points: 6
             },
             {
                 text: 'Buy a coffee machine',
@@ -407,6 +422,7 @@ var CHOICE_EVENTS = [
     {
         title: 'The team has their budget cut!',
         description: 'Do you:',
+        music: 'sad.mp3',
         options: [
             {
                 text: 'Fire a resource',

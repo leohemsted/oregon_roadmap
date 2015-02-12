@@ -13,13 +13,11 @@ var team = {
 
     updateVals: function(item) {
         if (item.morale !== undefined) {
-            var val = randomNoise(item.morale, 10);
-            console.log('morale: ' + val);
+            var val = randomNoise(item.morale, 7);
             this.morale += val;
         }
         if (item.story_points !== undefined) {
-            var val = randomNoise(item.story_points, 6);
-            console.log('story points: ' + val);
+            var val = randomNoise(item.story_points, 4);
             this.story_points += val;
         }
         if (item.resources !== undefined) {
