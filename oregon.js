@@ -3,34 +3,42 @@
 var TICKS = 0;
 
 var team = {
-    resources: {Alice: 10, Barry: 7, Chris: 12, Dan: 9, Englebert:9},
+    resources: ['Alice', 'Barry', 'Chris', 'Dan', 'Englebert'],
     story_points: 0,
     story_points_last_tick: 0,
     morale: 100,
 
     addResourcePoints: function() {
-        this.story_points += Object.keys(this.resources).length;
+        this.story_points += randomNoise(this.resources.length, 5);
     },
 
     updateVals: function(item) {
         if (item.morale !== undefined) {
-            var val = randomNoise(item.morale, 7);
-            this.morale += val;
+            if (item.morale < 0) {
+                // make the game a bit harder
+                item.morale -= 2;
+            }
+            this.morale += randomNoise(item.morale, 7);
         }
         if (item.story_points !== undefined) {
-            var val = randomNoise(item.story_points, 4);
-            this.story_points += val;
+            if (item.story_points < 0) {
+                // make the game a bit harder
+                item.story_points -= 2;
+            }
+            team.story_points_last_tick = team.story_points;
+            var added_pts = randomNoise(item.story_points, 4);
+            this.story_points += added_pts;
         }
         if (item.resources !== undefined) {
             if (item.resources > 0) {
                 // chose a silly name
-                var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool']);
-                this.resources[name] = randomNoise(10, 4);
+                var name = random(['Phil Pack', 'Jason Test', 'Shak.', 'Zool', 'Barry White']);
+                this.resources.append(name);
                 return 'Please welcome ' + name + ' to the team!';
             } else if (item.resources < 0) {
-                var keys = Object.keys(this.resources);
-                var dead_employee = keys[Math.floor(keys.length * Math.random())];
-                delete this.resources[dead_employee];
+                var bad_index = Math.floor(this.resources.length * Math.random());
+                var dead_employee = this.resources[bad_index];
+                this.resources.splice(bad_index, 1);
                 return 'Farewell, ' + dead_employee + ', we hardly knew ye.';
             } // else i probably fucked up and wrote resources : 0 oh well
         }
@@ -50,7 +58,7 @@ var randomNoise = function(val, max_deviance) {
         (Math.random() * max_deviance * 2 - max_deviance) +
         (Math.random() * max_deviance * 2 - max_deviance) +
         (Math.random() * max_deviance * 2 - max_deviance)
-        ) / 3;
+        ) / 3.0;
 };
 
 var random = function(arr) {
@@ -61,44 +69,17 @@ var teamStatus = function() {
     $('#morale').text(Math.floor(team.morale));
     $('#story_points').text(Math.floor(team.story_points));
     $('#resources').empty();
-    for (var name in team.resources) {
+    team.resources.forEach(function(name) {
         $('#resources').append($('<li>').text(name));
-    }
+    });
 };
 
-var tick = function() {
-    team.story_points_last_tick = team.story_points
-    if (team.IsAGroupOfShiningGoldenGods()){
-        return success();
-    }
-    if (team.isACompleteAndAbjectFailure() || TICKS > 20){
-        return fail();
-    }
-    TICKS++;
-    if (TICKS > 0) {
-        $('#title').hide();
-    }
-    // disable the next sprint button
-    //$('#tick').attr("disabled", true);
-    $('#controls').hide();
+var set_weather_desc = function() {
+    var weather_descs = ['working','wheezing', 'working','broken'];
+    $('#weather_status').html(random(weather_descs));
+};
 
-    var wild_encounter = random(EVENTS);
-    $('#event_name').text(wild_encounter.title);
-    $('#description').text(wild_encounter.description);
-    var music_src = "sound/title.mp3";
-    if (wild_encounter.music) {
-        music_src = "sound/" + wild_encounter.music;
-        if ($('#music source').attr("src") !== music_src) {
-            $('#music source').attr("src", music_src);
-            $('#music').trigger('pause');
-            $('#music').trigger('load');
-            $('#music').trigger('play');
-        }
-    }
-    var weather_descs = ['working','wheezing', 'working','broken']
-    $('#weather_status').html(weather_descs[Math.round(Math.random() * (weather_descs.length))]);
-
-    var story_points = Math.floor(team.story_points);
+var set_velocity_desc = function(story_points) {
     var velocity_desc = '';
     if (story_points >= 10) {
         velocity_desc = 'bonuses++';
@@ -122,8 +103,9 @@ var tick = function() {
         velocity_desc = 'going backwards';
     }
     $('#velocity_status').html(velocity_desc);
+};
 
-    var morale = Math.floor(team.morale);
+var set_morale_desc = function(morale) {
     var morale_desc = '';
     if (morale >= 115) {
         morale_desc = 'out of this <s>world</s> office';
@@ -145,14 +127,86 @@ var tick = function() {
         morale_desc = 'time to quit';
     }
     $('#morale_status').html(morale_desc);
+};
 
-    var resource_level = Object.keys(team.resources).length;
-    if (resource_level == 4 && Math.random() > 0.7) {
+var set_resource_desc = function(resource_level) {
+    if (resource_level === 4 && Math.random() > 0.7) {
         $('#resource_status').html('4 DAYS TO USE BY DATE');
     } else {
         $('#resource_status').html(resource_level);
     }
+};
 
+var clean_up_dom = function() {
+    // $('#tick').removeAttr('disabled');
+    $('#controls').show();
+    $('#title').empty();
+
+    // the event bits:
+    $('#event_name').empty();
+    $('#description').empty();
+    $('#choices').empty();
+
+    $('#team_status').hide();
+    $('#team').show();
+};
+
+var play_music = function(filename) {
+    console.log(filename)
+    var music_src = "sound/" + filename;
+    if ($('#music source').attr("src") !== music_src) {
+        $('#music source').attr("src", music_src);
+        $('#music').trigger('pause');
+        $('#music').trigger('load');
+        $('#music').trigger('play');
+    }
+};
+
+var fail = function() {
+    clean_up_dom();
+    $('#title').text('GAME OVER').show();
+    $('#controls').hide();
+    play_music('sad.mp3');
+    var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
+        'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
+        'northwest America.';
+    $('#description').text(txt);
+};
+
+var success = function() {
+    clean_up_dom();
+    $('#title').text('YOUR WINNER!').show();
+    $('#controls').hide();
+    play_music('yay.mp3');
+    var txt = 'Your project succeeded in only ' + TICKS + ' sprints! You have entered the pantheon of the greats, ' +
+        'ready to go down in history as the greatest scrum team the world has ever known. Congratulations!';
+    $('#description').text(txt);
+};
+
+var tick = function() {
+    if (team.IsAGroupOfShiningGoldenGods()){
+        return success();
+    }
+    if (team.isACompleteAndAbjectFailure() || TICKS > 20){
+        return fail();
+    }
+    TICKS++;
+    if (TICKS > 0) {
+        $('#title').hide();
+    }
+    // disable the next sprint button
+    //$('#tick').attr("disabled", true);
+    $('#controls').hide();
+
+    var wild_encounter = random(EVENTS);
+    $('#event_name').text(wild_encounter.title);
+    $('#description').text(wild_encounter.description);
+    play_music(wild_encounter.music || "title.mp3");
+
+    set_weather_desc();
+    set_velocity_desc(team.story_points - team.story_points_last_tick);
+    set_morale_desc(team.morale);
+    set_resource_desc(team.resources.length);
 
     $('#team_status').show();
     $('#team').hide();
@@ -171,49 +225,6 @@ var tick = function() {
     });
 };
 
-var clean_up_dom = function() {
-    // $('#tick').removeAttr('disabled');
-    $('#controls').show();
-    $('#title').empty();
-
-    // the event bits:
-    $('#event_name').empty();
-    $('#description').empty();
-    $('#choices').empty();
-
-    $('#team_status').hide();
-    $('#team').show();
-};
-
-var fail = function() {
-    clean_up_dom();
-    $('#title').text('GAME OVER').show();
-    $('#controls').hide();
-    $('#music source').attr("src", 'sound/sad.mp3');
-    $('#music').trigger('pause');
-    $('#music').trigger('load');
-    $('#music').trigger('play');
-    var txt = 'You lasted ' + TICKS + ' sprints, but had to throw in the towel. Out of money, out of time, ' +
-        'and out of resources, the project is doomed to failure. Maybe you should change career and become a pioneer in ' +
-        'northwest America.';
-    $('#description').text(txt);
-};
-
-var success = function() {
-    clean_up_dom();
-    $('#title').text('YOUR WINNER!').show();
-    $('#controls').hide();
-    $('#music source').attr("src", 'sound/yay.mp3');
-    $('#music').trigger('pause');
-    $('#music').trigger('load');
-    $('#music').trigger('play');
-    var txt = 'Your project succeeded in only ' + TICKS + ' sprints! You have entered the pantheon of the greats, ' +
-        'ready to go down in history as the greatest scrum team the world has ever known. Congratulations!';
-    $('#description').text(txt);
-};
-
-window.addEventListener("keypress", checkKeys, false);
-
 function checkKeys(e) {
     if (e.charCode === 32 || e.charCode === 13) {
         if ($('#controls').is(':visible')) {
@@ -227,6 +238,8 @@ function checkKeys(e) {
         }
     }
 }
+
+window.addEventListener("keypress", checkKeys, false);
 
 // This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
 window.onload = function() {
