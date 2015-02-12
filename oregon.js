@@ -1,5 +1,6 @@
 'use strict';
 /* global EVENTS, $*/
+var TICKS = 0;
 
 var team = {
     //name: velocity
@@ -52,6 +53,10 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    TICKS++;
+    if (TICKS > 0) {
+        $('#title').hide();
+    }
     // disable the next sprint button
     $('#tick').attr("disabled", true);
 
@@ -78,3 +83,10 @@ var clean_up_dom = function() {
     $('#description').empty();
     $('#choices').empty();
 };
+
+// This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
+window.onload = function() {
+    if (TICKS == 0) {
+        $('#tick').attr("disabled", false);
+    }
+}
