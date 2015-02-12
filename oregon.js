@@ -41,8 +41,7 @@ var tick = function() {
     var wild_encounter = random(EVENTS);
     $('#title').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
-    wild_encounter.options.each(function(option) {
-        debugger;
+    wild_encounter.options.forEach(function(option) {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
                 team.updateVals(option);
@@ -54,7 +53,7 @@ var tick = function() {
 
 var resolve_event = function() {
     $('#tick').removeAttr('disabled');
-    $('#title').text('');
-    $('description').text('');
-    $('choices').text('');
+    $('#title').empty();
+    $('description').empty();
+    $('choices').empty();
 };
