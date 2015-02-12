@@ -16,20 +16,27 @@
             <div id="inner">
                 <!--button id="tick" onclick="tick()">Next sprint</button-->
 
-                <div id="event">
+            <div id="event">
                     <h3 id="event_name"></h3>
-                    <span id="description"></span>
-                    <ul id="choices"></ul>
+                <span id="description"></span>
+                <ul id="choices"></ul>
+            </div>
+
+            <!--div id="gantt" style="position:relative;">
+                <img src="img/gantt.png" alt="gantt"></img>
+            </div>-->
+            <div id="team">
+                <div style="float: left;">
+                    <h5>Team morale:</h5><span id="morale"></span>
                 </div>
-                <!--div id="gantt" style="position:relative;">
-                    <img src="img/gantt.png" alt="gantt"></img>
-                </div>-->
-                <div id="team">
-                    <div><h5>Team morale:</h5><span id="morale"></span></div>
-                    <div><h5>Story point progress:</h5><span id="story_points"></span></div>
+                <div style="float: right;">
+                    <h5>Story point progress:</h5><span id="story_points"></span>
+                </div>
+                <div style="clear: both;">
                     <h5>Resources:</h5>
                     <ol id="resources"></ol>
                 </div>
+            </div>
 
                 <div id="progress"></div>
 
@@ -39,5 +46,9 @@
         </div>
     </body>
     <script>teamStatus();</script>
+    <audio id="music" controls autoplay loop style="display:none">
+        <source src="sound/title.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </html>
 
