@@ -52,7 +52,8 @@ var tick = function() {
         $('#title').hide();
     }
     // disable the next sprint button
-    $('#tick').attr("disabled", true);
+    //$('#tick').attr("disabled", true);
+    $('#controls').hide();
 
     var wild_encounter = random(EVENTS);
     $('#title').text(wild_encounter.title);
@@ -69,11 +70,22 @@ var tick = function() {
 };
 
 var clean_up_dom = function() {
-    $('#tick').removeAttr('disabled');
+    //$('#tick').removeAttr('disabled');
+    $('#controls').show();
     $('#title').empty();
     $('#description').empty();
     $('#choices').empty();
 };
+
+window.addEventListener("keypress", checkKeys, false);
+
+function checkKeys(e) {
+    if (e.charCode == "32" || e.charCode == "13") {
+        if ($('#controls').is(':visible')) {
+            tick();
+        }
+    }
+}
 
 // This is to fix a wierd bug in firefox whereby refreshing the page does not reset the button state
 window.onload = function() {

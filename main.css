@@ -3,18 +3,25 @@ body {
 
 }
 h1 {
-    font: bold 55px 'VT323', courier, monospace;
+    font: normal 60px 'VT323', courier, monospace;
     text-align: center;
-    padding: 20px 0px 20px 0px;
-    border-bottom: solid 4px saddlebrown;
+    margin-bottom: 0px;
+}
+div.line {
+    border-top: solid 4px saddlebrown;
+    width: 95%;
+    margin-top: 15px;
 }
 #container {
     background-color: #000;
     color: #fff;
     width: 800px;
-    height: 600px;
-    font-family: 'VT323', courier, monospace;
+    font-size: 18px;
 }
+#inner {
+    margin: 0px 50px 0px 50px;
+}
+#tick
 #gantt {
     position: relative;
 }
@@ -26,4 +33,8 @@ h1 {
     background-color: orange;
     display: block;
     opacity: 0.5
+}
+#controls {
+    text-align: center;
+    font: normal 32px 'VT323', courier, monospace;
 }
