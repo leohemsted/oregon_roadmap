@@ -52,6 +52,16 @@ var tick = function() {
     var wild_encounter = random(EVENTS);
     $('#title').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
+    var music_src = "sound/title.mp3"
+    if (wild_encounter.music) {
+        music_src = "sound/" + wild_encounter.music;
+    }
+    if ($('#music source').attr("src") != music_src) {
+        $('#music source').attr("src", music_src);
+        $('#music').trigger('pause');
+        $('#music').trigger('load');
+        $('#music').trigger('play');
+    }
     wild_encounter.options.forEach(function(option) {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){

@@ -3,6 +3,7 @@ var NO_CHOICE_EVENTS = [
     {
         title: 'Bonus Day!',
         description: 'Your resources have been awarded bonuses for their hard work! Morale improves.',
+        music: 'yay.mp3',
         options: [{
             text: 'ok',
             morale: 5
@@ -11,6 +12,7 @@ var NO_CHOICE_EVENTS = [
     {
         title: 'A call from A&E...',
         description: '"I\'m very sorry sir, your employee fell in front of the Gokhan Express at Hammersmith"',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             resources: -1
@@ -19,6 +21,7 @@ var NO_CHOICE_EVENTS = [
     {
         title: 'A call from A&E...',
         description: '"I\'m very sorry sir, your developer has died of dysentry"',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             resources: -1
@@ -28,6 +31,7 @@ var NO_CHOICE_EVENTS = [
         title: 'A small kerfuffle',
         description: 'After an intense debate about timezones with Nick, your employee is found in the ' +
             '7th floor toilets with a kukri knife embedded in their spine. They were pronounced dead on arrival at A&E.',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             resources: -1
@@ -84,6 +88,7 @@ var NO_CHOICE_EVENTS = [
         title: 'Product release!',
         description: 'Congratulations! Your product has finally made its way into the hands of the client! No doubt they\'ll ' +
             'have lots of feedback to give you, but for now your team is just glad that they\'ve got a version out the door.',
+        music: 'yay.mp3',
         options: [{
             text: 'ok',
             morale: 8
@@ -128,7 +133,7 @@ var NO_CHOICE_EVENTS = [
         'is in no way related to the alcohol consumed.',
         options: [{
             text: 'ok',
-            morale: 5,
+            morale: 5
         }]
     },
     {
@@ -164,6 +169,7 @@ var NO_CHOICE_EVENTS = [
         title: 'Atlassian cockup',
         description: 'Hipchat goes down! Now your developers have nothing to do inbetween meetings! '+
         'They\'re moping around looking miserable at the moment.',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             morale: -5
@@ -214,6 +220,7 @@ var NO_CHOICE_EVENTS = [
         title: 'The contract was signed!',
         description: 'A key contract was signed and your company is clean sailing again! '+
         'Everyone\'s pretty happy about it.',
+        music: 'yay.mp3',
         options: [{
             text: 'ok',
             morale: 6
