@@ -18,13 +18,16 @@
 
             <div id="event">
                 <h3 id="event_name"></h3>
+                <div id="team_status" style="display: none;">
+                    Aircon: <span id="weather_status"></span><br />
+                    Velocity: <span id="velocity_status"></span><br />
+                    Resource level: <span id="resource_status"></span><br />
+                    Morale: <span id="morale_status"></span><br />
+                </div>
                 <span id="description"></span>
-                <ol id="choices"></ul>
+                <ol id="choices"></ol>
             </div>
 
-            <!--div id="gantt" style="position:relative;">
-                <img src="img/gantt.png" alt="gantt"></img>
-            </div>-->
             <div id="team">
                 <div style="float: left;">
                     <h5>Team morale:</h5><span id="morale"></span>
@@ -32,7 +35,7 @@
                 <div style="float: right;">
                     <h5>Story point progress:</h5><span id="story_points"></span>
                 </div>
-                <div style="clear: both;">
+                <div style="clear: both; padding-top: 10px;">
                     <h5>Resources:</h5>
                     <ol id="resources"></ol>
                 </div>
