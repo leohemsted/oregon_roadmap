@@ -5,6 +5,7 @@ var TICKS = 0;
 var team = {
     resources: {Alice: 10, Barry: 7, Chris: 12, Dan: 9, Englebert:9},
     story_points: 0,
+    story_points_last_tick: 0,
     morale: 100,
 
     addResourcePoints: function() {
@@ -68,6 +69,7 @@ var teamStatus = function() {
 };
 
 var tick = function() {
+    team.story_points_last_tick = team.story_points
     if (team.IsAGroupOfShiningGoldenGods()){
         return success();
     }
@@ -119,7 +121,7 @@ var tick = function() {
         velocity_desc = 'AWOL';
     }
     else {
-        velocity_desc = 'unknown';
+        velocity_desc = 'going backwards';
     }
     $('#velocity_status').html(velocity_desc);
 
@@ -133,14 +135,16 @@ var tick = function() {
         morale_desc = 'above par';
     } else if (morale >= 100) {
         morale_desc = 'average';
-    } else if (morale >= -5) {
+    } else if (morale >= 90) {
+        morale_desc = 'could be better';
+    } else if(morale >= 80) {
         morale_desc = 'industry standard';
-    } else if(morale >= -10) {
-        morale_desc = 'sub-par';
-    } else if(morale >= -15) {
-        morale_desc = 'AWOL';
+    } else if(morale >= 70) {
+        morale_desc = 'could be worse';
+    } else if(morale >= 60) {
+        morale_desc = 'like a sinking ship';
     } else {
-        morale_desc = 'unknown';
+        morale_desc = 'time to quit';
     }
     $('#morale_status').html(morale_desc);
 
