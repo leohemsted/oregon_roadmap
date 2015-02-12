@@ -35,9 +35,9 @@ var Team = React.createClass({
 var Game = React.createClass({
     createTeam: function() {
         this.setState({aex: this.refs.team_name.props.value});
-        this.advanceState();
+        this.tick();
     },
-    advanceState: function() {
+    tick: function() {
         this.setState({status: this.state.status+1});
     },
     render: function() {
@@ -45,7 +45,7 @@ var Game = React.createClass({
             return (
                 <div><b>Welcome to the game! (version {this.props.version})</b>
 
-                <p><button onClick={this.advanceState}>Start the game</button></p></div>
+                <p><button onClick={this.tick}>Start the game</button></p></div>
             );
         }
         else if (this.state.status == CREATE_TEAM) {
