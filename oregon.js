@@ -37,6 +37,14 @@ var random = function(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 };
 
+var teamStatus = function() {
+    $('#morale').text(Math.floor(team.morale));
+    $('#story_points').text(Math.floor(team.story_points));
+    for (var name in team.resources) {
+        $('#resources').append($('<li>').text(name));
+    }
+};
+
 var tick = function() {
     // disable the next sprint button
     $('#tick').attr("disabled", true);
@@ -48,6 +56,7 @@ var tick = function() {
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
                 team.updateVals(option);
+                teamStatus();
                 clean_up_dom();
             })
         );
