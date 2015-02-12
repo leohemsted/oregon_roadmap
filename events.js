@@ -69,6 +69,7 @@ var NO_CHOICE_EVENTS = [
         title: 'Technical Debt overload!',
         description: 'Your technical debt is running away from you, and the spaghetti code and poor OO practices in your ' +
         'codebase are making your developers weep. Someone hands your team a box of tissues, it doesn\'t seem to help much.',
+        music: 'sad.mp3',
         options: [{
             text: 'ok',
             morale: -5
