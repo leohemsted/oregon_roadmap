@@ -36,13 +36,13 @@ var random = function(arr) {
 
 var tick = function() {
     // disable the next sprint button
-    debugger;
     $('#tick').attr("disabled", true);
 
     var wild_encounter = random(EVENTS);
     $('#title').text(wild_encounter.title);
     $('#description').text(wild_encounter.description);
     wild_encounter.options.each(function(option) {
+        debugger;
         $('#choices').append(
             $('<li>').text(option.text).click(function(){
                 team.updateVals(option);

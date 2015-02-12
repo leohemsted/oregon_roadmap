@@ -246,7 +246,7 @@ var CHOICE_EVENTS = [
     },
 ];
 
-var EVENTS = CHOICE_EVENTS + NO_CHOICE_EVENTS;
+var EVENTS = CHOICE_EVENTS.concat(NO_CHOICE_EVENTS);
 
 
 /*    Hiring:
