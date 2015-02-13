@@ -14,6 +14,7 @@ var team = {
     },
 
     updateVals: function(item) {
+        team.story_points_last_tick = team.story_points;
         if (item.morale !== undefined) {
             if (item.morale < 0) {
                 // make the game a bit harder
@@ -26,7 +27,6 @@ var team = {
                 // make the game a bit harder
                 item.story_points -= 2;
             }
-            team.story_points_last_tick = team.story_points;
             var added_pts = randomNoise(item.story_points, 4);
             this.story_points += added_pts;
         }
